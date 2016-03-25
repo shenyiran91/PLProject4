@@ -60,7 +60,6 @@ print "\nselect Lname, Fname, title, sal from s_emp e join s_dept d on(e.deptid 
 
 # 7. select dept_id, avg(salary) from s_emp group by dept_id order by dept_id;
 print "\nselect deptno, avg(sal) from emp group by deptno order by deptid"
-#for department in { d[9] for d in s_emp[1::] }: print sorted((lambda deptno, avgSal: [deptno, avgSal])(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ]))), key =lambda x: x[0])
 print sorted([(lambda deptno, avgSal: [deptno, avgSal])(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ]))) for department in { d[9] for d in s_emp[1::] }],key=lambda x: x[0])
 
 # 8. select dept_id, avg(salary) from s_emp group by dept_id having avg(salary) < 1500;
