@@ -64,4 +64,4 @@ print sorted([(lambda deptno, avgSal: [deptno, avgSal])(department, (lambda l: r
 
 # 8. select dept_id, avg(salary) from s_emp group by dept_id having avg(salary) < 1500;
 print "\nselect deptid, avg(sal) from s_emp group by deptid having avg(sal) < 1500"
-for department in { d[9] for d in s_emp[1::] }: print (lambda deptno, avgSal: (deptno, avgSal) if avgSal < 1500 else '')(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ])))
+print filter(None,[(lambda deptno, avgSal:[deptno,avgSal] if (avgSal < 1500) else None)(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ])))for department in { d[9] for d in s_emp[1::] } ])
