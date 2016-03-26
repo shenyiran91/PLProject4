@@ -59,8 +59,8 @@ print "\nselect Lname, Fname, title, sal from s_emp where sal > 1500 and dept_id
 print "\nselect Lname, Fname, title, sal from s_emp e join s_dept d on(e.deptid = d.deptid): ", [[i[1], i[3], i[6],i[7],j[1]] for i in s_emp[1::] for j in s_dept[1::] if i[9] == j[0] ]
 
 # 7. select dept_id, avg(salary) from s_emp group by dept_id order by dept_id;
-print "\nselect deptno, avg(sal) from emp group by deptno order by deptid"
-print sorted([(lambda deptno, avgSal: [deptno, avgSal])(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ]))) for department in { d[9] for d in s_emp[1::] }],key=lambda x: x[0])
+print "\nselect deptid, avg(sal) from emp group by deptid order by deptid"
+for department in { d[9] for d in s_emp[1::] }: (lambda deptno, avgSal: [deptno, avgSal])(department, (lambda l: round(sum(l) / len(l), 2))(map(float,[ e[7] for e in s_emp[1::] if e[9] == department ])))
 
 # 8. select dept_id, avg(salary) from s_emp group by dept_id having avg(salary) < 1500;
 print "\nselect deptid, avg(sal) from s_emp group by deptid having avg(sal) < 1500"
